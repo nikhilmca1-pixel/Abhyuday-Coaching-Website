@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+ <div class="container hero-grid">
+  <div class="hero-copy">
+   <span class="eyebrow">ADMISSIONS OPEN · OFFLINE CLASSES</span>
+   <h1>सपनों को दिशा दें,<br><em>सफलता की ओर बढ़ें।</em></h1>
+   <p>अभ्युदय में Competitive Exams की तैयारी के लिए सही मार्गदर्शन, मजबूत concepts और निरंतर अभ्यास।</p>
+   <div class="hero-actions"><a class="btn btn-primary" href="{{ url_for('register') }}">Register Now – FREE</a><a class="btn btn-outline" href="{{ url_for('courses_page') }}">Explore Courses</a></div>
+   <div class="hero-points"><span>✓ Registration Fee ₹0</span><span>✓ Offline Learning</span><span>✓ Student-focused Guidance</span></div>
+  </div>
+  <div class="hero-art"><div class="art-circle"></div><div class="book-emoji">📚</div><div class="art-note"><b>LEARN · PRACTICE · SUCCEED</b><small>आपकी मेहनत, हमारा मार्गदर्शन</small></div></div>
+ </div>
+</section>
+<section class="trust-strip"><div class="container trust-grid"><div><b>₹0</b><span>Registration Fee</span></div><div><b>Offline</b><span>Classroom Learning</span></div><div><b>Etah</b><span>Shanti Nagar</span></div><div><b>All-round</b><span>Exam Guidance</span></div></div></section>
+<section class="section container">
+ <div class="section-heading"><span class="eyebrow">WHAT WE OFFER</span><h2>आपकी तैयारी, हमारा मार्गदर्शन</h2><p>Competitive exams के लिए व्यवस्थित तैयारी और अभ्यास।</p></div>
+ <div class="card-grid">{% for course in courses[:3] %}<article class="info-card"><div class="card-icon">✦</div><h3>{{ course.name }}</h3><p>{{ course.description }}</p><a href="{{ url_for('courses_page') }}">Explore course →</a></article>{% else %}<article class="info-card"><h3>Courses coming soon</h3><p>जल्द ही course details यहाँ उपलब्ध होंगी।</p></article>{% endfor %}</div>
+ <div class="center space-top"><a class="btn btn-outline" href="{{ url_for('courses_page') }}">View All Courses</a></div>
+</section>
+<section class="section soft-bg"><div class="container split"><div><span class="eyebrow">WHY ABHYUDAY</span><h2>सीखने का सही माहौल,<br>आगे बढ़ने का आत्मविश्वास।</h2><p>हमारा उद्देश्य विद्यार्थियों को प्रतियोगी परीक्षाओं के लिए अनुशासित तैयारी और बेहतर मार्गदर्शन देना है।</p><ul class="check-list"><li>Concept-based learning</li><li>Regular practice and revision</li><li>Supportive classroom environment</li><li>Free student registration</li></ul><a class="btn btn-primary" href="{{ url_for('about') }}">Know About Us</a></div><div class="feature-panel"><div class="feature-symbol">✦</div><h3>हर प्रयास मायने रखता है।</h3><p>आज से तैयारी शुरू करें।</p></div></div></section>
+<section class="section container"><div class="section-heading"><span class="eyebrow">OUR FACULTY</span><h2>हमारे शिक्षक</h2><p>Faculty की verified details जल्द यहाँ जोड़ी जाएँगी।</p></div><div class="card-grid">{% for person in faculty %}<article class="faculty-card">{% if person.photo %}<img src="{{ url_for('static', filename='uploads/'+person.photo) }}" alt="{{ person.name }}">{% else %}<div class="avatar-placeholder">👨‍🏫</div>{% endif %}<div><h3>{{ person.name }}</h3><p>{{ person.qualification }}</p><b>{{ person.subject }}</b></div></article>{% else %}<div class="empty-state">Faculty profiles जल्द उपलब्ध होंगी।</div>{% endfor %}</div><div class="center space-top"><a class="btn btn-outline" href="{{ url_for('faculty_page') }}">Meet Our Faculty</a></div></section>
+<section class="section gallery-preview soft-bg"><div class="container"><div class="section-heading"><span class="eyebrow">OUR CAMPUS</span><h2>Coaching & Library Gallery</h2><p>Library और coaching centre की photos यहाँ दिखाई देंगी।</p></div><div class="gallery-grid">{% for photo in gallery[:4] %}<a href="{{ url_for('gallery_page') }}" class="gallery-item"><img src="{{ url_for('static', filename='uploads/'+photo.image) }}" alt="{{ photo.title }}"><span>{{ photo.title or 'Abhyuday Campus' }}</span></a>{% else %}<div class="empty-state">Campus photos जल्द upload की जाएँगी।</div>{% endfor %}</div><div class="center space-top"><a class="btn btn-outline" href="{{ url_for('gallery_page') }}">View Gallery</a></div></div></section>
+<section class="cta-section"><div class="container cta-inner"><div><span class="eyebrow light">START YOUR JOURNEY</span><h2>आपकी सफलता की शुरुआत आज से।</h2><p>अभ्युदय में अपना registration करें। कोई registration fee नहीं।</p></div><a class="btn btn-light" href="{{ url_for('register') }}">Register Free →</a></div></section>
+{% endblock %}

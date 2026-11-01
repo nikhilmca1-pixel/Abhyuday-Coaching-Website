@@ -1,0 +1,2 @@
+{% extends "base.html" %}
+{% block content %}<section class="admin-shell container"><aside class="admin-side"><b>ABHYUDAY ADMIN</b><a href="{{ url_for('dashboard') }}">Overview</a><a href="{{ url_for('admin_students') }}">Students</a><a href="{{ url_for('admin_faculty') }}">Faculty</a><a href="{{ url_for('admin_courses') }}">Courses</a><a href="{{ url_for('admin_gallery') }}">Library Photos</a><a href="{{ url_for('logout') }}">Logout</a></aside><div class="admin-content">{% block admin_content %}{% endblock %}</div></section>{% endblock %}

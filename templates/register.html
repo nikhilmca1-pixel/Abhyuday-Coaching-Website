@@ -1,0 +1,46 @@
+{% extends "base.html" %}{% block title %}Student Admission Form | Abhyuday{% endblock %}
+{% block content %}
+<section class="page-banner"><div class="container"><span class="eyebrow light">JOIN ABHYUDAY</span><h1>Student Admission Form</h1><p>अभ्युदय में आपका स्वागत है। Registration fee बिल्कुल FREE है।</p></div></section>
+<section class="section container narrow"><div class="form-card">
+<div class="fee-line"><span>Registration Fee</span><strong>₹0 · FREE</strong></div>
+<p class="muted">कृपया form ध्यान से भरें। यदि कोई certificate अभी उपलब्ध नहीं है, तो उसे बाद में coaching office में जमा कर सकते हैं।</p>
+<form method="post" enctype="multipart/form-data" class="form-grid">
+<h2 class="full form-section-title">1. Personal Details | व्यक्तिगत जानकारी</h2>
+<label>Student Full Name *<input name="name" required maxlength="100" placeholder="पूरा नाम"></label>
+<label>Father's Name<input name="father_name" maxlength="100" placeholder="पिता का पूरा नाम"></label>
+<label>Mother's Name<input name="mother_name" maxlength="100" placeholder="माता का पूरा नाम"></label>
+<label>Date of Birth<input name="dob" type="date"></label>
+<label>Gender<select name="gender"><option value="">Select</option><option>Male</option><option>Female</option><option>Other</option></select></label>
+<label>Category<select name="category"><option value="">Select</option><option>General</option><option>OBC</option><option>SC</option><option>ST</option><option>Other</option></select></label>
+<label>Mobile Number *<input name="mobile" required inputmode="numeric" pattern="[0-9]{10}" maxlength="10" placeholder="10 digit mobile number"></label>
+<label>Email Address<input name="email" type="email" placeholder="name@example.com"></label>
+<label class="full">Full Address<textarea name="address" rows="2" placeholder="House / Village / Area, Post, District, State, PIN"></textarea></label>
+
+<h2 class="full form-section-title">2. Domicile & Family Income | निवास और आय</h2>
+<label>Domicile State<input name="domicile_state" placeholder="e.g. Uttar Pradesh"></label>
+<label>Domicile District<input name="domicile_district" placeholder="e.g. Etah"></label>
+<label class="full">Annual Family Income (₹)<input name="annual_income" inputmode="numeric" placeholder="परिवार की वार्षिक आय"></label>
+
+<h2 class="full form-section-title">3. Last Qualification | अंतिम शैक्षिक योग्यता</h2>
+<label>Last Qualification<select name="last_qualification"><option value="">Select qualification</option><option>Class 8</option><option>Class 10 / High School</option><option>Class 12 / Intermediate</option><option>Graduation</option><option>Post Graduation</option><option>Other</option></select></label>
+<label>Board / University<input name="board_university" placeholder="Board या University का नाम"></label>
+<label>Passing Year<input name="passing_year" inputmode="numeric" maxlength="4" placeholder="e.g. 2025"></label>
+<label>Marks / Percentage<input name="marks_percentage" placeholder="e.g. 72%"></label>
+
+<h2 class="full form-section-title">4. Course Details | कोर्स की जानकारी</h2>
+<label class="full">Select Course<select name="course_id"><option value="">Choose a course</option>{% for c in courses %}<option value="{{ c.id }}">{{ c.name }}</option>{% endfor %}</select></label>
+
+<h2 class="full form-section-title">5. Required Documents | आवश्यक दस्तावेज</h2>
+<p class="full muted">PDF, JPG, JPEG, PNG या WEBP format. कुल upload limit 25 MB है। ये uploads अभी optional हैं; originals admission के समय verify किए जा सकते हैं।</p>
+<label>Student Photograph<input type="file" name="photo" accept=".pdf,.jpg,.jpeg,.png,.webp"></label>
+<label>Student Signature<input type="file" name="signature" accept=".pdf,.jpg,.jpeg,.png,.webp"></label>
+<label>Income Certificate<input type="file" name="income_certificate" accept=".pdf,.jpg,.jpeg,.png,.webp"></label>
+<label>Domicile Certificate<input type="file" name="domicile_certificate" accept=".pdf,.jpg,.jpeg,.png,.webp"></label>
+<label>Character Certificate<input type="file" name="character_certificate" accept=".pdf,.jpg,.jpeg,.png,.webp"></label>
+<label>Last Qualification Marksheet / Certificate<input type="file" name="qualification_document" accept=".pdf,.jpg,.jpeg,.png,.webp"></label>
+<label class="full">Character Certificate Number (if available)<input name="character_certificate_no" placeholder="Certificate number"></label>
+
+<h2 class="full form-section-title">6. Declaration | घोषणा</h2>
+<label class="full declaration"><input type="checkbox" required> मैं घोषणा करता/करती हूँ कि मेरे द्वारा दी गई जानकारी मेरी जानकारी के अनुसार सही है।</label>
+<div class="full"><button class="btn btn-primary full-btn" type="submit">Submit Application – FREE</button><small class="muted">* Student name और mobile number जरूरी हैं। Registration fee ₹0 है।</small></div>
+</form></div></section>{% endblock %}

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="hi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="अभ्युदय Coaching Institute, GGIC Shanti Nagar, Etah. Competitive exam preparation.">
+  <title>{% block title %}अभ्युदय | Abhyuday Coaching Institute{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <script defer src="{{ url_for('static', filename='js/main.js') }}"></script>
+</head>
+<body>
+<header class="site-header">
+  <div class="container nav-wrap">
+    <a class="brand" href="{{ url_for('home') }}">
+      <img src="{{ url_for('static', filename='img/abhuday.jpeg') }}" alt="अभ्युदय logo" onerror="this.style.display='none'">
+      <span><b>अभ्युदय</b><small>ABHYUDAY COACHING INSTITUTE</small></span>
+    </a>
+    <button class="menu-toggle" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+    <nav class="nav-links">
+      <a href="{{ url_for('home') }}">Home</a>
+      <a href="{{ url_for('about') }}">About</a>
+      <a href="{{ url_for('courses_page') }}">Courses</a>
+      <a href="{{ url_for('faculty_page') }}">Faculty</a>
+      <a href="{{ url_for('gallery_page') }}">Library & Gallery</a>
+      <a href="{{ url_for('contact') }}">Contact</a>
+      <a class="nav-cta" href="{{ url_for('register') }}">Free Registration</a>
+      {% if logged_in %}<a href="{{ url_for('dashboard') }}">Admin</a>{% endif %}
+    </nav>
+  </div>
+</header>
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}<div class="container flash-wrap">{% for category, message in messages %}<div class="flash {{ category }}">{{ message }}</div>{% endfor %}</div>{% endif %}
+{% endwith %}
+<main>{% block content %}{% endblock %}</main>
+<footer class="footer">
+  <div class="container footer-grid">
+    <div><h3>अभ्युदय | ABHYUDAY</h3><p>आपकी सफलता, हमारा संकल्प।</p><p>Competitive Exam Preparation</p></div>
+    <div><h4>Quick Links</h4><a href="{{ url_for('courses_page') }}">Courses</a><a href="{{ url_for('faculty_page') }}">Faculty</a><a href="{{ url_for('gallery_page') }}">Library & Gallery</a></div>
+    <div><h4>Visit Us</h4><p>GGIC, Shanti Nagar, Etah</p><p>Phone: Coming soon</p><a href="{{ url_for('login') }}">Admin Login</a></div>
+  </div>
+  <div class="copyright">© {{ 2026 }} Abhyuday Coaching Institute. All rights reserved.</div>
+</footer>
+</body>
+</html>

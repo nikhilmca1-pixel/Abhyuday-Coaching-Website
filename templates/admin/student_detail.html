@@ -1,0 +1,9 @@
+{% extends "admin/base_admin.html" %}{% block title %}Student Application | Abhyuday{% endblock %}
+{% block admin_content %}<h1>Student Application #{{ student.id }}</h1>
+<div class="admin-panel"><h2>Personal, Income & Academic Details</h2><div class="detail-grid">
+{% for label,value in [('Name',student.name),("Father's Name",student.father_name),('Mobile',student.mobile),('Email',student.email),('DOB',student.dob),('Gender',student.gender),('Category',student.category),('Address',student.address),('Annual Family Income',student.annual_income),('Domicile State',student.domicile_state),('Domicile District',student.domicile_district),('Last Qualification',student.last_qualification),('Board / University',student.board_university),('Passing Year',student.passing_year),('Marks / Percentage',student.marks_percentage),('Course',student.course_name),('Character Certificate No.',student.character_certificate_no)] %}<div><small>{{ label }}</small><b>{{ value or '—' }}</b></div>{% endfor %}
+</div></div>
+<div class="admin-panel"><h2>Uploaded Documents</h2>
+{% for label,key in [('Student Photograph','photo_file'),('Student Signature','signature_file'),('Income Certificate','income_certificate_file'),('Domicile Certificate','domicile_certificate_file'),('Character Certificate','character_certificate_file'),('Last Qualification Document','qualification_file')] %}
+<div class="manage-row"><div><b>{{ label }}</b><small>{{ student[key] or 'Not uploaded' }}</small></div>{% if student[key] %}<a class="btn btn-outline btn-small" target="_blank" href="{{ url_for('static',filename='uploads/'+student[key]) }}">Open file</a>{% endif %}</div>{% endfor %}
+</div><a class="btn btn-outline" href="{{ url_for('admin_students') }}">← Back to Students</a>{% endblock %}
